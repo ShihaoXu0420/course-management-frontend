@@ -6,8 +6,6 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 // --- Generic Helper Functions ---
 const handleGetResponse = (response) => {
     if (response.status >= 200 && response.status < 300) {
-        console.log('Get:');
-        console.log(response.data.data);
         return response.data.data;
     } else {
         throw new Error(`Request failed with status ${response.status}`);
@@ -16,8 +14,6 @@ const handleGetResponse = (response) => {
 
 const handleCreateResponse = (response) => {
     if (response.status >= 200 && response.status < 300) {
-        console.log('Create:');
-        console.log(response.data);
         return response.data;
     } else {
         throw new Error(`Request failed with status ${response.status}`);
@@ -26,8 +22,6 @@ const handleCreateResponse = (response) => {
 
 const handleUpdateResponse = (response) => {
     if (response.status >= 200 && response.status < 300) {
-        console.log('Update:');
-        console.log(response.data);
         return response.data;
     } else {
         throw new Error(`Request failed with status ${response.status}`);
@@ -36,8 +30,6 @@ const handleUpdateResponse = (response) => {
 
 const handleDeleteResponse = (response) => {
     if (response.status >= 200 && response.status < 300) {
-        console.log('Delete:');
-        console.log(response.data);
         return response.data;
     } else {
         throw new Error(`Request failed with status ${response.status}`);
@@ -180,9 +172,9 @@ export const deleteCourse = async (id) => {
 };
 
 // --- Course Registrations API ---
-export const getCourseRegistrations = async () => {
+export const getCourseRegistrations = async (id) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/course-registrations`);
+        const response = await axios.get(`${API_BASE_URL}/course-registrations/course/${id}`);
         return handleGetResponse(response);
     } catch (error) {
         return handleError(error);
