@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: course-management-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: course-management-frontend
+  template:
+    metadata:
+      labels:
+        app: course-management-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: shihaoxu/course-management-frontend:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
